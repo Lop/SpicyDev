@@ -1,0 +1,109 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <?php echo $this->headMeta(); ?>
+        <?php echo $this->headTitle(); ?>
+        <?php echo $this->headLink(); ?>
+        <?php echo $this->headScript(); ?>
+        <script type="text/javascript">
+            $(function() {
+	
+                // Close Left-Menu Event
+                $( "#left-hide" ).click(function() {
+                    $( ".left" ).toggleClass( "left-hide", "drop" );
+                    $( ".left-splitt" ).toggleClass( "show", "drop" );
+                    $(".main").toggleClass("main-wide","drop");
+
+                    return false;
+                });
+
+                $('#sidemenu h2').click(function() {
+                    $(this).next().toggle('slow');
+                    return false;
+                }).next().show();
+
+                //Tabs
+		$( "#tabs" ).tabs();
+		$( "#tabs" )
+			.removeClass( "ui-widget-content ui-corner-all" );
+	    //    .addClass( "ui-widget-content-white");
+		$( "#tabs ul" )
+			.removeClass( "ui-corner-all ui-widget-header" )
+			.addClass( "ui-corner-bottom" );
+
+		//Button
+		$( ".action-box button:first" ).button({
+            icons: {
+                primary: "ui-icon-pencil"
+            }
+        }).next().button({
+            icons: {
+                primary: "ui-icon-close"
+            }
+        }).next().button({
+            icons: {
+                primary: "ui-icon-search"
+
+            }
+        }).next().button({
+            icons: {
+                primary: "ui-icon-print"
+
+            }
+        });
+
+            });
+        </script>
+
+    </head>
+    <body>
+        <div class="wrapper">
+            <!--Header Start-->
+            <div class="head">
+                <div id="logo">
+                    <img alt="" src="<?php echo $this->baseUrl() ?>/images/logo.png" width="151" height="25" border="0" />
+                </div>
+                <div class="top-menu"><?php echo $this->loggedInAs(); ?> </div>
+                
+            </div>
+            <!--Main Navigation start-->
+            <div id="menubar">
+                <div class="navmenu">
+                    <?php echo $this->navigation()->menu(); ?>
+                </div>
+
+                <div id="searchbox">
+                    <form id="form1" name="form1" method="post" action="">
+                        <label for="textfield"></label>
+                        <input type="text" name="textfield" id="textfield" class="input-text" />
+                        <input type="submit" id="search-submit" class="input_submit" value="Search" />
+                    </form>
+                </div>
+
+            </div>
+            <!--Pager start-->
+            <div class="page">
+                <!--Left module start-->
+                <div class="left">
+                    <?php echo $this->placeholder('sidebar') ?>
+                    
+                    <div class="copyrith left_bottom">&copy;2011 ActiveMedia (Thailand) Co.,Ltd.</div>
+                </div>
+                <!--Left close bottom-->
+                <div class="left-splitt hide"> <a id="left-hide" href="#"><img alt="" src="<?php echo $this->baseUrl() ?>/images/blank10.png" width="10" height="25" /></a> </div>
+
+                <!--Main content start-->
+                <div class="main">
+                    <!--Contents block-->
+                    <div class="contens">
+                        <h1><?php echo $this->escape($this->title); ?></h1>
+                        <?php echo $this->layout()->content; ?>
+
+                    </div>
+                </div>
+                <!--Content block end-->
+            </div>
+            <!--Main content end-->
+        </div>
+    </body>
+</html>
